@@ -1,3 +1,5 @@
+package StudentApplication;
+
 public class SchoolTester {
 
     // Tester

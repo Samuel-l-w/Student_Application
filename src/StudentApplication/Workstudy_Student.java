@@ -1,3 +1,5 @@
+package StudentApplication;
+
 public class Workstudy_Student extends Student {
 
     // attribute
