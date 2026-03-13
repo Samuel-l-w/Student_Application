@@ -1,6 +1,7 @@
 package StudentApplication;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Student {
 
@@ -8,6 +9,7 @@ public class Student {
     private String name;
     private final int idNumber;
     private Major studentMajor;
+    private boolean isSorted;
 
     // attributes variable
     private ArrayList<Course> courses;
@@ -21,6 +23,7 @@ public class Student {
         this.idNumber = idNumber;
         this.studentMajor = studentMajor;
         courses = new ArrayList<>();
+        isSorted = true;
     }
 
     // second constructor using nextID
@@ -29,6 +32,7 @@ public class Student {
         this.idNumber = nextID;
         nextID += 1; // increase by 1 for next student
         courses = new ArrayList<>();
+        isSorted = true;
     }
 
     // addCourse method
@@ -40,6 +44,7 @@ public class Student {
 
         // adds the course
         courses.add(course);
+        isSorted = false;
         return true;
     }
 
@@ -51,6 +56,7 @@ public class Student {
         }
         // removes the course
         courses.remove(course);
+        isSorted = false;
         return true;
     }
 
@@ -74,7 +80,14 @@ public class Student {
 
     // to-string method
     public String toString() {
+        // sort only if the list is unsorted
+        if (!isSorted) {
+            Collections.sort(courses); // uses Course's compareTo()
+            isSorted = true;
+        }
+
         String out = "Name: " + name + " | IdNumber: " + idNumber + " | Courses: " + courses;
+
         if (courses.size() == 0) {
             out += ". Student has no courses!";
         }

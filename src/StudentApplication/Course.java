@@ -1,6 +1,6 @@
 package StudentApplication;
 
-public class Course {
+public class Course implements Comparable <Course>{
 
     // instance variables
     private final String courseDepartment;
@@ -12,6 +12,22 @@ public class Course {
         this.courseDepartment = courseDepartment;
         this.courseNumber = courseNumber;
         this.creditHours = creditHours;
+    }
+
+    // compareTo method
+    @Override
+    public int compareTo(Course other) {
+
+        int courseDeptCompare = this.courseDepartment.compareTo(other.courseDepartment);
+
+        if (courseDeptCompare != 0) {
+            return courseDeptCompare;
+        }
+
+        int thisNumber = Integer.parseInt(this.courseNumber);
+        int otherNumber = Integer.parseInt(other.courseNumber);
+
+        return thisNumber - otherNumber;
     }
 
     // equals method
